@@ -12,6 +12,7 @@ public class CarScript : MonoBehaviour
     {
         checkCount = 0;
         lapCount = 1;
+
     }
 
     // Update is called once per frame

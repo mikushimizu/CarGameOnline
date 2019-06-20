@@ -24,6 +24,8 @@ public class UIManager : MonoBehaviour
     }
 
     IEnumerator CountDown() {
+        yield return new WaitForSeconds(4.0f);
+
         countDownText.text = "3";
         yield return new WaitForSeconds(1.0f);
 
