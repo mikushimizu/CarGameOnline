@@ -1375,8 +1375,8 @@ GameObject:
   - component: {fileID: 1202756630}
   - component: {fileID: 1202756629}
   - component: {fileID: 1202756633}
-  - component: {fileID: 3460393443908332522}
-  - component: {fileID: 2046845787962037614}
+  - component: {fileID: 8229283889643079169}
+  - component: {fileID: 3774750879054512539}
   m_Layer: 0
   m_Name: CarPrefab
   m_TagString: Untagged
@@ -1510,7 +1510,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lapCount: 0
---- !u!114 &3460393443908332522
+--- !u!114 &8229283889643079169
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1531,13 +1531,13 @@ MonoBehaviour:
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
   ObservedComponents:
-  - {fileID: 670776007}
+  - {fileID: 3774750879054512539}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
---- !u!114 &2046845787962037614
+--- !u!114 &3774750879054512539
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1553,7 +1553,7 @@ MonoBehaviour:
     SynchronizeEnabled: 1
     TeleportEnabled: 1
     TeleportIfDistanceGreaterThan: 3
-    InterpolateOption: 3
+    InterpolateOption: 2
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 1
     InterpolateMoveTowardsAcceleration: 2
@@ -1600,7 +1600,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    ExtrapolateOption: 1
+    ExtrapolateOption: 0
     ExtrapolateSpeed: 1
     ExtrapolateIncludingRoundTripTime: 1
     ExtrapolateNumberOfStoredPositions: 1
