@@ -23,28 +23,24 @@ public class PhotonManager : Photon.PunBehaviour
     // ルームに入室すると呼ばれる
     void OnJoinedRoom()
     {
-        Debug.Log("ルームへ"+ PhotonNetwork.countOfPlayers +"人入室しました。");
+        Debug.Log("ルームへ入室しました。");
         //CarPrefabを生成する
         transform.rotation = Quaternion.Euler(0, 180, 0); //Carの向きが逆になってになってしまう問題を解決
-        
         if (PhotonNetwork.countOfPlayers < 2)
         { 
             transform.position = new Vector3(66, 0, 0);
-            GameObject car1 = PhotonNetwork.Instantiate("CarPrefab", transform.position, transform.rotation, 0);
-            car1.name = "car1";
-            //car1.tag = "car1";
-            //GameObject cam1 = PhotonNetwork.Instantiate("CameraPrefab", transform.position, transform.rotation, 0);
-            //cam1.transform.parent = car1.transform;
+            PhotonNetwork.Instantiate("CarPrefab", transform.position, transform.rotation, 0);
         }
         if (PhotonNetwork.countOfPlayers == 2)
         {
-            transform.position = new Vector3(60, 0, 0);
-            Debug.Log("2台目生成できたよ");
-            GameObject car2 = PhotonNetwork.Instantiate("CarPrefab", transform.position, transform.rotation, 0);
-            Debug.Log("car2: " + car2);
-            car2.name = "car2";
+            transform.position = new Vector3(60, 0, 7); //生成位置
+            PhotonNetwork.Instantiate("CarPrefab", transform.position, transform.rotation, 0);
         }
-
+        if (PhotonNetwork.countOfPlayers == 3)
+        {
+            Vector3 spawnPosition = new Vector3(54, 0, 14); //生成位置
+            PhotonNetwork.Instantiate("CarPrefab", spawnPosition, Quaternion.identity, 0);
+        }
     }
 
     // ルームの入室に失敗すると呼ばれる
