@@ -16,18 +16,13 @@ public class CarUserControl : Photon.PunBehaviour
         this.myPhotonView = GetComponent<PhotonView>();
         m_Car = GetComponent<CarController>();
 
-        if (myPhotonView.isMine)
+        if (myPhotonView.isMine) //Carが自分の車である場合
         {
-            //Cameraをアタッチする
-            GameObject cam = PhotonNetwork.Instantiate("CameraPrefab", transform.position, transform.rotation, 0);
-            /*
-            transform.position = new Vector3(0, 3, -5);
-            transform.rotation = Quaternion.Euler(20, 0, 0); //Carの向きが逆になってになってしまう問題を解決
-            
-            cam.transform.parent = this.transform;
-            */
-            //うまい位置アタッチにつかない…
-
+            GameObject camPrefab = (GameObject)Resources.Load("CameraPrefab"); //ResourcesフォルダからCameraPrefabをとってくる
+            Vector3 RelativePosition = new Vector3(0, 3, 5);
+            GameObject cam = Instantiate(camPrefab, transform.position + RelativePosition, transform.rotation); //CameraPrefabを生成する
+            cam.transform.parent = gameObject.transform; //Cameraの親オブジェクトはCarとする
+            //この時点でCameraの相対座標は(0,0,0)になっているので、CameraScriptで位置を調整する
         }
     }
     private void FixedUpdate()
