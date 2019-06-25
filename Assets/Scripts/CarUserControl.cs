@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 using UnityStandardAssets.Vehicles.Car;
+using Photon;
 
 public class CarUserControl : Photon.PunBehaviour
 {
@@ -10,29 +11,27 @@ public class CarUserControl : Photon.PunBehaviour
     float h; //horizontal
     float v; //Vertical
 
-    private void Start()
+    private void Awake()
     {
         this.myPhotonView = GetComponent<PhotonView>();
         m_Car = GetComponent<CarController>();
-        /*
-        PhotonNetwork.Instantiate("CameraPrefab", transform.position, transform.rotation, 0);
-        */
-        if (myPhotonView.isMine) //Carが自分の車である場合
+
+        if (myPhotonView.isMine)
         {
-            Debug.Log("できてる");
-            GameObject camObj = (GameObject)Resources.Load("CameraPrefab");
-            //Carを親として、CameraPrefabを生成する。
-            //Cameraの相対座標は(0,0,0)になっているので、CameraScriptで位置を調整する
-            //GameObject cam = PhotonNetwork.Instantiate("CameraPrefab", transform.position, transform.rotation, 0);
-            GameObject cam = Instantiate(camObj, transform.position, transform.rotation);
-            Debug.Log(cam.transform.parent);
-            cam.transform.parent = gameObject.transform;
-            Debug.Log(cam.transform.parent.ToString());
+            //Cameraをアタッチする
+            GameObject cam = PhotonNetwork.Instantiate("CameraPrefab", transform.position, transform.rotation, 0);
+            /*
+            transform.position = new Vector3(0, 3, -5);
+            transform.rotation = Quaternion.Euler(20, 0, 0); //Carの向きが逆になってになってしまう問題を解決
+            
+            cam.transform.parent = this.transform;
+            */
+            //うまい位置アタッチにつかない…
+
         }
     }
     private void FixedUpdate()
     {
-        
         if (myPhotonView.isMine)
         {
             if (RaceManager.instance.isRacing == true)
